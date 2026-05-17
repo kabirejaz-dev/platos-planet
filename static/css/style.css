@@ -1,7 +1,7 @@
 :root {
-  --primary: #1B4332;
-  --primary-2: #2D6A4F;
-  --accent: #D4A017;
+  --primary: #1E3A8A;
+  --primary-2: #1D4ED8;
+  --accent: #F97316;
   --bg: #FAF8F2;
   --text: #1A1A2E;
   --muted: #6B6A63;
@@ -109,7 +109,7 @@ h3 { font-size: 1.35rem; }
   display: grid;
   align-items: center;
   background:
-    linear-gradient(90deg, rgba(27,67,50,.95), rgba(27,67,50,.72), rgba(26,26,46,.38)),
+    linear-gradient(90deg, rgba(30,58,138,.95), rgba(30,58,138,.72), rgba(26,26,46,.38)),
     url("https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?auto=format&fit=crop&w=1800&q=80") center/cover;
   color: white;
 }
@@ -136,7 +136,7 @@ h3 { font-size: 1.35rem; }
 .course-body { padding: 18px; display: grid; gap: 10px; }
 .course-body p { color: var(--muted); margin: 0; min-height: 52px; }
 .card-meta, .course-foot, .detail-stats, .total-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.badge { display: inline-flex; padding: 5px 10px; border-radius: 999px; background: #E7F3EC; color: var(--primary); font-weight: 900; font-size: .78rem; }
+.badge { display: inline-flex; padding: 5px 10px; border-radius: 999px; background: #DBEAFE; color: var(--primary); font-weight: 900; font-size: .78rem; }
 .badge.gold { background: rgba(212,160,23,.18); color: var(--accent); }
 .stars { color: var(--accent); font-weight: 800; font-size: .86rem; }
 .course-foot strong, .total-line strong { color: var(--primary); font-size: 1.2rem; }
@@ -166,7 +166,7 @@ blockquote, .panel, .form-card, .progress-card, .admin-form, .admin-item {
 
 .page-head {
   padding: 86px clamp(18px, 5vw, 76px) 40px;
-  background: linear-gradient(135deg, var(--primary), #10281F);
+  background: linear-gradient(135deg, var(--primary), #0F1F5C);
   color: white;
 }
 .page-head.compact h1 { font-size: clamp(2.1rem, 4vw, 3.8rem); }
@@ -220,7 +220,7 @@ legend { font-weight: 900; padding: 0 8px; }
 label { display: grid; gap: 7px; font-weight: 800; margin-bottom: 12px; }
 label input[type="radio"], .check input { width: auto; min-height: auto; margin-right: 8px; }
 .result-row { grid-template-columns: 1fr auto; margin-bottom: 10px; }
-.result-row.ok { border-color: #8CC9A8; }
+.result-row.ok { border-color: #93C5FD; }
 .result-row.bad { border-color: #FCA5A5; }
 .cart-row { grid-template-columns: 82px 1fr auto auto; margin-bottom: 12px; }
 .cart-row img { width: 82px; height: 58px; object-fit: cover; border-radius: var(--radius); }
