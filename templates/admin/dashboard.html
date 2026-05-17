@@ -1,0 +1,24 @@
+{% extends "admin/_layout.html" %}
+{% block title %}Admin Dashboard | Plato's Planet{% endblock %}
+{% block admin_content %}
+<div class="admin-head">
+  <h1>Admin Dashboard</h1>
+  <form method="post" action="{{ url_for('admin_seed') }}"><button class="btn" type="submit">Seed Sample Courses</button></form>
+</div>
+<div class="stat-grid">
+  <div class="stat-card"><span>Students</span><strong>{{ stats.students }}</strong><p>Total students</p></div>
+  <div class="stat-card"><span>Courses</span><strong>{{ stats.courses }}</strong><p>Total courses</p></div>
+  <div class="stat-card"><span>Revenue</span><strong>AED {{ "%.2f"|format(stats.revenue) }}</strong><p>Total revenue</p></div>
+</div>
+<div class="panel">
+  <h3>Recent orders</h3>
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Total</th><th>Status</th><th>Date</th></tr>
+    {% for order in orders %}
+      <tr><td>#{{ order.id }}</td><td>{{ order.name }}</td><td>AED {{ "%.2f"|format(order.total) }}</td><td>{{ order.status }}</td><td>{{ order.created_at }}</td></tr>
+    {% else %}
+      <tr><td colspan="5">No orders yet.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

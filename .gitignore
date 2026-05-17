@@ -1,0 +1,6 @@
+data/database.db
+__pycache__/
+*.pyc
+*.pyo
+flask-server.log
+flask-server.err.log

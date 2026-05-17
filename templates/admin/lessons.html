@@ -1,0 +1,25 @@
+{% extends "admin/_layout.html" %}
+{% block title %}Manage Lessons | Plato's Planet{% endblock %}
+{% block admin_content %}
+<h1>Lessons: {{ course.title }}</h1>
+<form class="admin-form" method="post" action="{{ url_for('admin_add_lesson') }}">
+  <input type="hidden" name="course_id" value="{{ course.id }}">
+  <input name="title" placeholder="Lesson title" required>
+  <input name="video_url" placeholder="YouTube embed URL" required>
+  <input name="duration_min" type="number" placeholder="Minutes" required>
+  <input name="order_num" type="number" placeholder="Order" required>
+  <textarea name="content_notes" placeholder="Lesson notes"></textarea>
+  <button class="btn" type="submit">Add Lesson</button>
+</form>
+<div class="panel">
+  <table>
+    <tr><th>Order</th><th>Title</th><th>Duration</th><th></th></tr>
+    {% for lesson in lessons %}
+      <tr>
+        <td>{{ lesson.order_num }}</td><td>{{ lesson.title }}</td><td>{{ lesson.duration_min }} min</td>
+        <td><form method="post" action="{{ url_for('admin_delete_lesson', id=lesson.id) }}"><button class="danger-btn" type="submit">Delete</button></form></td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

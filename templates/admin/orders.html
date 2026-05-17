@@ -1,0 +1,15 @@
+{% extends "admin/_layout.html" %}
+{% block title %}Orders | Plato's Planet{% endblock %}
+{% block admin_content %}
+<h1>Orders</h1>
+<div class="panel">
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Email</th><th>Total</th><th>Status</th><th>Created</th></tr>
+    {% for order in orders %}
+      <tr><td>#{{ order.id }}</td><td>{{ order.name }}</td><td>{{ order.email }}</td><td>AED {{ "%.2f"|format(order.total) }}</td><td>{{ order.status }}</td><td>{{ order.created_at }}</td></tr>
+    {% else %}
+      <tr><td colspan="6">No orders yet.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

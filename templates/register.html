@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Register | Plato's Planet{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <form class="form-card" method="post">
+    <h1>Create Account</h1>
+    <label>Name<input name="name" required></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Password<input type="password" name="password" required minlength="6"></label>
+    <button class="btn large" type="submit">Register</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+<article class="course-card">
+  <a href="{{ url_for('course_detail', id=course.id) }}">
+    <img src="{{ course.image }}" alt="{{ course.title }}">
+  </a>
+  <div class="course-body">
+    <div class="card-meta">
+      <span class="badge">{{ course.level }}</span>
+      <span class="stars">★★★★★ {{ "%.1f"|format(course.rating) }}</span>
+    </div>
+    <h3><a href="{{ url_for('course_detail', id=course.id) }}">{{ course.title }}</a></h3>
+    <p>{{ course.description }}</p>
+    <div class="course-foot">
+      <span>{{ course.instructor }}</span>
+      <strong>AED {{ "%.0f"|format(course.price) }}</strong>
+    </div>
+  </div>
+</article>

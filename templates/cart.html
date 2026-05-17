@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Cart | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact"><h1>Your Cart</h1><p>Review your learning path before checkout.</p></section>
+<section class="section narrow">
+  {% for item in items %}
+    <div class="cart-row">
+      <img src="{{ item.image }}" alt="{{ item.title }}">
+      <div><strong>{{ item.title }}</strong><p>{{ item.instructor }}</p></div>
+      <strong>AED {{ "%.2f"|format(item.price) }}</strong>
+      <form method="post" action="{{ url_for('remove_from_cart', id=item.id) }}"><button class="btn small ghost" type="submit">Remove</button></form>
+    </div>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endfor %}
+  {% if items %}
+    <div class="total-line"><span>Total</span><strong>AED {{ "%.2f"|format(total) }}</strong></div>
+    <a class="btn large" href="{{ url_for('checkout') }}">Checkout</a>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Courses | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact">
+  <h1>Our Courses</h1>
+  <p>Find academic support, exam preparation, skill programs, and language training.</p>
+</section>
+<section class="section">
+  <form class="filters" method="get">
+    <input name="q" value="{{ q }}" placeholder="Search courses, instructors, ideas">
+    <select name="cat">
+      {% for item in categories %}
+        <option value="{{ item }}" {% if cat == item %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+    <select name="level">
+      {% for item in ['All','Beginner','Intermediate','Advanced'] %}
+        <option value="{{ item }}" {% if level == item %}selected{% endif %}>{{ item }}</option>
+      {% endfor %}
+    </select>
+    <select name="sort">
+      <option value="featured" {% if sort == 'featured' %}selected{% endif %}>Featured</option>
+      <option value="rating" {% if sort == 'rating' %}selected{% endif %}>Top rated</option>
+      <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price low</option>
+      <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price high</option>
+    </select>
+    <button class="btn" type="submit">Apply</button>
+  </form>
+  <div class="tabs">
+    {% for item in categories %}
+      <a class="{% if cat == item %}active{% endif %}" href="{{ url_for('courses', cat=item, q=q, level=level, sort=sort) }}">{{ item }}</a>
+    {% endfor %}
+  </div>
+  <div class="course-grid">
+    {% for course in courses %}
+      {% include "_course_card.html" %}
+    {% else %}
+      <p>No courses match your filters.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

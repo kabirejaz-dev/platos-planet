@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | Plato's Planet{% endblock %}
+{% block content %}
+<section class="auth-page admin-auth">
+  <form class="form-card" method="post">
+    <h1>Admin Login</h1>
+    <label>Email<input type="email" name="email" value="admin@platosplanet.local" required></label>
+    <label>Password<input type="password" name="password" placeholder="admin123" required></label>
+    <button class="btn large" type="submit">Enter Admin</button>
+  </form>
+</section>
+{% endblock %}

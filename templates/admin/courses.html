@@ -1,0 +1,47 @@
+{% extends "admin/_layout.html" %}
+{% block title %}Manage Courses | Plato's Planet{% endblock %}
+{% block admin_content %}
+<div class="admin-head">
+  <h1>Courses</h1>
+  <form method="post" action="{{ url_for('admin_seed') }}"><button class="btn small" type="submit">Seed CSV</button></form>
+</div>
+<form class="admin-form" method="post" action="{{ url_for('admin_add_course') }}">
+  <h3>Add course</h3>
+  <input name="title" placeholder="Title" required>
+  <input name="instructor" placeholder="Instructor" required>
+  <select name="category">{% for c in ['IGCSE','CBSE','Robotics','Brainobrain','Oratory','Languages','IELTS','SATs','NEET & IIT-JEE'] %}<option>{{ c }}</option>{% endfor %}</select>
+  <select name="level">{% for l in ['Beginner','Intermediate','Advanced'] %}<option>{{ l }}</option>{% endfor %}</select>
+  <input name="price" type="number" step="0.01" placeholder="Price" required>
+  <input name="old_price" type="number" step="0.01" placeholder="Old price">
+  <input name="duration_hrs" type="number" step="0.5" placeholder="Hours" required>
+  <input name="rating" type="number" step="0.1" min="0" max="5" placeholder="Rating">
+  <input name="image" placeholder="Image URL">
+  <textarea name="description" placeholder="Description" required></textarea>
+  <label class="check"><input type="checkbox" name="featured"> Featured</label>
+  <button class="btn" type="submit">Add Course</button>
+</form>
+
+<div class="admin-list">
+  {% for course in courses %}
+    <details class="admin-item">
+      <summary><strong>{{ course.title }}</strong><span>{{ course.category }} • AED {{ "%.2f"|format(course.price) }}</span></summary>
+      <form class="admin-form compact" method="post" action="{{ url_for('admin_edit_course', id=course.id) }}">
+        <input name="title" value="{{ course.title }}" required>
+        <input name="instructor" value="{{ course.instructor }}" required>
+        <select name="category">{% for c in ['IGCSE','CBSE','Robotics','Brainobrain','Oratory','Languages','IELTS','SATs','NEET & IIT-JEE'] %}<option {% if course.category == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select>
+        <select name="level">{% for l in ['Beginner','Intermediate','Advanced'] %}<option {% if course.level == l %}selected{% endif %}>{{ l }}</option>{% endfor %}</select>
+        <input name="price" type="number" step="0.01" value="{{ course.price }}" required>
+        <input name="old_price" type="number" step="0.01" value="{{ course.old_price }}">
+        <input name="duration_hrs" type="number" step="0.5" value="{{ course.duration_hrs }}" required>
+        <input name="rating" type="number" step="0.1" value="{{ course.rating }}">
+        <input name="image" value="{{ course.image }}">
+        <textarea name="description" required>{{ course.description }}</textarea>
+        <label class="check"><input type="checkbox" name="featured" {% if course.featured %}checked{% endif %}> Featured</label>
+        <button class="btn small" type="submit">Save</button>
+        <a class="btn small ghost" href="{{ url_for('admin_lessons', course_id=course.id) }}">Lessons</a>
+      </form>
+      <form method="post" action="{{ url_for('admin_delete_course', id=course.id) }}"><button class="danger-btn" type="submit">Delete</button></form>
+    </details>
+  {% endfor %}
+</div>
+{% endblock %}

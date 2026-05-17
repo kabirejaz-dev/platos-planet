@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ course.title }} | Plato's Planet{% endblock %}
+{% block content %}
+<section class="detail-hero">
+  <img src="{{ course.image }}" alt="{{ course.title }}">
+  <div>
+    <span class="badge gold">{{ course.category }}</span>
+    <h1>{{ course.title }}</h1>
+    <p>{{ course.description }}</p>
+    <div class="detail-stats">
+      <span>★★★★★ {{ "%.1f"|format(course.rating) }}</span>
+      <span>{{ course.level }}</span>
+      <span>{{ course.duration_hrs }} hours</span>
+      <span>{{ course.total_students }} students</span>
+    </div>
+    <form method="post" action="{{ url_for('add_to_cart', id=course.id) }}">
+      <button class="btn large" type="submit">{% if enrolled %}Enrolled{% else %}Enroll for AED {{ "%.2f"|format(course.price) }}{% endif %}</button>
+      {% if course.old_price %}<span class="old-price">AED {{ "%.2f"|format(course.old_price) }}</span>{% endif %}
+    </form>
+  </div>
+</section>
+
+<section class="two-col section">
+  <div>
+    <h2>Course lessons</h2>
+    <div class="lesson-list">
+      {% for lesson in lessons %}
+        <a class="lesson-row {% if not enrolled %}locked{% endif %}" href="{% if enrolled %}{{ url_for('lesson', id=lesson.id) }}{% else %}#{% endif %}">
+          <span>{{ lesson.order_num }}</span>
+          <strong>{{ lesson.title }}</strong>
+          <em>{{ lesson.duration_min }} min {% if not enrolled %}• Locked{% endif %}</em>
+        </a>
+      {% endfor %}
+    </div>
+    {% if enrolled and quiz %}
+      <a class="btn" href="{{ url_for('quiz', id=quiz.id) }}">Take Quiz</a>
+    {% endif %}
+  </div>
+  <aside class="panel">
+    <h3>Instructor</h3>
+    <p><strong>{{ course.instructor }}</strong></p>
+    <p>An experienced Plato's Planet educator focused on clear teaching, progress tracking, practice support, and parent communication.</p>
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+      <p><strong>{{ review.name }}</strong> {{ review.rating }}/5<br>{{ review.comment }}</p>
+    {% else %}
+      <p>No reviews yet.</p>
+    {% endfor %}
+  </aside>
+</section>
+
+<section class="section">
+  <h2>Related courses</h2>
+  <div class="course-grid three">
+    {% for course in related %}
+      {% include "_course_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

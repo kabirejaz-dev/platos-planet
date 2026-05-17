@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Quiz Result | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact">
+  <h1>{{ "Passed" if passed else "Keep Studying" }}: {{ score }}%</h1>
+  <p>{{ quiz.title }}</p>
+</section>
+<section class="section narrow">
+  {% for item in review %}
+    <div class="result-row {{ 'ok' if item.ok else 'bad' }}">
+      <strong>{{ item.question.question_text }}</strong>
+      <span>Your answer: {{ item.answer or "None" }} • Correct: {{ item.question.correct_answer }}</span>
+    </div>
+  {% endfor %}
+  <a class="btn" href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</section>
+{% endblock %}

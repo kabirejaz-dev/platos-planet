@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ quiz.title }} | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact"><h1>{{ quiz.title }}</h1><p>{{ quiz.course_title }} • Passing score {{ quiz.passing_score }}%</p></section>
+<section class="section narrow">
+  <form class="quiz-form" method="post" action="{{ url_for('submit_quiz', id=quiz.id) }}">
+    {% for question in questions %}
+      <fieldset>
+        <legend>{{ loop.index }}. {{ question.question_text }}</legend>
+        {% for key, text in [('A', question.opt_a), ('B', question.opt_b), ('C', question.opt_c), ('D', question.opt_d)] %}
+          <label><input type="radio" name="q{{ question.id }}" value="{{ key }}" required> {{ text }}</label>
+        {% endfor %}
+      </fieldset>
+    {% endfor %}
+    <button class="btn large" type="submit">Submit Quiz</button>
+  </form>
+</section>
+{% endblock %}

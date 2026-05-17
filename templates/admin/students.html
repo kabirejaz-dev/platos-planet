@@ -1,0 +1,15 @@
+{% extends "admin/_layout.html" %}
+{% block title %}Students | Plato's Planet{% endblock %}
+{% block admin_content %}
+<h1>Students</h1>
+<div class="panel">
+  <table>
+    <tr><th>Name</th><th>Email</th><th>Enrollments</th><th>Joined</th></tr>
+    {% for student in students %}
+      <tr><td>{{ student.name }}</td><td>{{ student.email }}</td><td>{{ student.enrollment_count }}</td><td>{{ student.created_at }}</td></tr>
+    {% else %}
+      <tr><td colspan="4">No students yet.</td></tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

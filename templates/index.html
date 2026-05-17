@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Plato's Planet | Learn With Wonder{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">KHDA & SPEA accredited educational institute</p>
+    <h1>Be the best with Plato's life-changing learning community.</h1>
+    <p>Admissions are open for exam preparation, academic tutoring, Robotics, Brainobrain, Oratory, Languages, IELTS, SATs, NEET and IIT-JEE coaching across the UAE.</p>
+    <div class="hero-actions">
+      <a class="btn large" href="{{ url_for('courses') }}">Our Courses</a>
+      <a class="btn large ghost-light" href="{{ url_for('register') }}">Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <p class="eyebrow">Courses offered</p>
+    <h2>Start your learning journey today</h2>
+  </div>
+  <div class="course-grid">
+    {% for course in featured %}
+      {% include "_course_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="band">
+  <div class="section-head">
+    <p class="eyebrow">100+ courses</p>
+    <h2>Choose your program</h2>
+  </div>
+  <div class="category-grid">
+    {% for item in categories %}
+      <a class="category-card" href="{{ url_for('courses', cat=item.category) }}">
+        <span>{{ item.category[:2].upper() }}</span>
+        <strong>{{ item.category }}</strong>
+        <small>{{ item.count }} courses</small>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div>
+    <h2>Leading education center in the UAE</h2>
+    <p>With 50,000+ training hours, 10,000+ students, and learners from 30+ nationalities, Plato's Planet supports students with flexible online and onsite learning.</p>
+  </div>
+  <blockquote>"Detailed performance tracking helps parents monitor progress, attendance, assignments, and feedback."</blockquote>
+  <blockquote>"Recorded classes, expert educators, and counsellor support keep students engaged everywhere."</blockquote>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact"><h1>Student Dashboard</h1><p>Your courses, progress, quizzes, and orders.</p></section>
+<section class="section">
+  <h2>Enrolled courses</h2>
+  <div class="dashboard-grid">
+    {% for item in enrollments %}
+      <article class="progress-card">
+        <img src="{{ item.image }}" alt="{{ item.title }}">
+        <h3>{{ item.title }}</h3>
+        <div class="progress"><span style="width: {{ item.progress_pct }}%"></span></div>
+        <p>{{ item.progress_pct }}% complete</p>
+        <a class="btn small" href="{{ url_for('course_detail', id=item.course_id) }}">Continue</a>
+      </article>
+    {% else %}
+      <p>No enrollments yet. <a href="{{ url_for('courses') }}">Browse courses</a>.</p>
+    {% endfor %}
+  </div>
+  <div class="two-col">
+    <div class="panel"><h3>Quiz scores</h3>{% for a in attempts %}<p>{{ a.course_title }}: <strong>{{ a.score }}%</strong> {{ "Passed" if a.passed else "Failed" }}</p>{% else %}<p>No quiz attempts yet.</p>{% endfor %}</div>
+    <div class="panel"><h3>Order history</h3>{% for o in orders %}<p>#{{ o.id }} - AED {{ "%.2f"|format(o.total) }} - {{ o.status }}</p>{% else %}<p>No orders yet.</p>{% endfor %}</div>
+  </div>
+</section>
+{% endblock %}

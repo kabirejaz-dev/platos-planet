@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Checkout | Plato's Planet{% endblock %}
+{% block content %}
+<section class="page-head compact"><h1>Enrollment Checkout</h1><p>Payment is simulated locally. Your courses unlock after placing the order.</p></section>
+<section class="section two-col">
+  <form class="form-card" method="post">
+    <label>Name<input name="name" value="{{ current_user.name }}" required></label>
+    <label>Email<input type="email" name="email" value="{{ current_user.email }}" required></label>
+    <label>Address<textarea name="address" required></textarea></label>
+    <label>Phone<input name="phone" required></label>
+    <button class="btn large" type="submit">Place Order</button>
+  </form>
+  <aside class="panel">
+    <h3>Order summary</h3>
+    {% for item in items %}<p>{{ item.title }} <strong>AED {{ "%.2f"|format(item.price) }}</strong></p>{% endfor %}
+    <div class="total-line"><span>Total</span><strong>AED {{ "%.2f"|format(total) }}</strong></div>
+  </aside>
+</section>
+{% endblock %}

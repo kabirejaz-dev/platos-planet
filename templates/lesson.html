@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }} | Plato's Planet{% endblock %}
+{% block content %}
+<section class="lesson-page">
+  <div class="video-wrap">
+    <iframe src="{{ lesson.video_url }}" title="{{ lesson.title }}" allowfullscreen></iframe>
+  </div>
+  <div class="lesson-tools">
+    <a href="{{ url_for('course_detail', id=lesson.course_id) }}">Back to {{ lesson.course_title }}</a>
+    <h1>{{ lesson.title }}</h1>
+    <p class="notes">{{ lesson.content_notes }}</p>
+    <form method="post" action="{{ url_for('complete_lesson', id=lesson.id) }}">
+      <button class="btn" type="submit">{% if completed %}Completed{% else %}Mark Complete{% endif %}</button>
+    </form>
+    <div class="lesson-nav">
+      {% if prev_lesson %}<a class="btn ghost" href="{{ url_for('lesson', id=prev_lesson.id) }}">Previous</a>{% endif %}
+      {% if next_lesson %}<a class="btn" href="{{ url_for('lesson', id=next_lesson.id) }}">Next</a>{% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

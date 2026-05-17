@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="admin-shell">
+  <aside class="admin-side">
+    <h2>Plato Admin</h2>
+    <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('admin_courses') }}">Courses</a>
+    <a href="{{ url_for('admin_quizzes') }}">Quizzes</a>
+    <a href="{{ url_for('admin_students') }}">Students</a>
+    <a href="{{ url_for('admin_orders') }}">Orders</a>
+    <a href="{{ url_for('index') }}">View Site</a>
+  </aside>
+  <div class="admin-main">
+    {% block admin_content %}{% endblock %}
+  </div>
+</section>
+{% endblock %}
