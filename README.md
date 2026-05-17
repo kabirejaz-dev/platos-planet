@@ -5,6 +5,7 @@
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/flask-2%2B-black?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![SQLite](https://img.shields.io/badge/sqlite-3-003B57?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![Open in Claude Code](https://img.shields.io/badge/Claude%20Code-Onboarding-blueviolet?logo=anthropic)](https://claude.ai/claude-code/onboard/xH2e0peD0DQ8)
 
 Plato's Planet is a full-stack education web app for a UAE education center, with academic programs, course browsing, enrollment checkout, lessons, quizzes, student dashboards, and an admin panel.
 
